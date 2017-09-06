@@ -1,0 +1,4 @@
+<choice:$game_variables[843] > 0 && $game_switches[312] == true|Hide with me!|Hey N<15>! I'm hiding at the toilets you should hide with me! I'm scared xxx|152|814>
+<choice:$game_switches[269] == true && $game_switches[271] == false && $game_variables[844] == 0 && $game_variables[845] == 0|Need a babysitter!|Hey N<15>! My mom is going out tonight. Can you babysit me?|161|0>
+<choice:$game_switches[269] == true && $game_switches[271] == false && $game_variables[845] > 0|Need a babysitter!|Hey N<15>! My mom is going out tonight. Want to be my babysitter? Remember I have that pic before you answer!|163|184>
+<choice:$game_switches[269] == true && $game_switches[271] == false && $game_variables[844] > 0|Need a babysitter!|Hey N<15>! Can you babysit me tonight please? I don't want to be alone... xx|162|184>
