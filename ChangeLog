@@ -1,1 +1,56 @@
 Edit this ;D
+###########################Dialogue and Text Message Changes################################
+Text Message 15 needed a variable switch to activate correctly.
+Lots of Dialogues updated by KingsRaiden
+Fixed mrs-j-hj scenes and added mrs-j-bj-lick-corrupt which is a copy of mrs-j-bj-corrupt
+
+
+####################################Event Changes###########################################
+
+
+002 Test Map:
+	Added Cheat to control the stats of all the characters
+
+013 Home Floor:
+	005,012|032:MomStoreEvent
+		Made it so mom can't send you to the supermarket during the morning.
+	014,005|008:Mom
+		Made it so she disappears during the Supermarket scene.
+	006,014|30:Babysitter|Event Page 2 & 5 & 6
+		Added a else clause to add a variety of dialogue if the sex level is under level 8
+016: School Outside:
+	009,005|046:EV046
+		Added a invisible event next to Recess Mrs J in order to equate the values of the old variables to the new ones to ensure all scenes are possible for the Mrs J's Recess sex so it works with the rewrite.
+			This will not activate unless you have the old variables above zero (which is impossible at the moment for anyone whose not cheating.) So this only works for old saves right now but in the future it will work with the new jennings quest.
+014 Home Floor 02:
+	016,015|SydneySleep and 011,009|Sydney
+		Fixed a bug with Sister rage scene by adding a 2 events that allow for the scene to occur at night
+019 Park South:
+	007,010|011:Sarah|Page 2
+		Fixed dialogue for when sex level is above 8 and on pure path
+022 Playground:
+	009,006|005:Kimberly
+		Added Extra Requirement to the Hide and Seek to prevent abandonment even when you are at max pure and max corrupt on the Pure Route.
+
+033 Miss Amos House:
+	013,017|004:Miss Amos Kit
+		Added some extra Dialogue to Ms Amos in the Kitchen.
+
+038 School Scene:
+	007,009|001:EV001:
+		Fixed a lot of scenes and dialogue issues but I can't remember all of them.
+			I had to change mrs-j-bj-corrupt to mrs-j-bj-lick-corrupt because mrs-j-bj-lick-corrupt didn't exist before that. I copied the mrs-j-bj-corrupt into a separate file and renamed it to compensate for if there are any unknown scenes that use mrs-j-bj-lick-corrupt.
+				The point is it was a complicated issue but it's fixed and it works now.
+				If there are no scenes that use mrs-j-bj-corrupt in the future we can delete that file without repercussions
+
+047 Entrance:
+	010,007|007:EV007
+		Fixed bug where event occurred during the day when walking dizzy home
+		
+#########################################Common Events#############################################
+Common Event 053:
+	Added Teleport, Return to Position, and Change time to Q hotkey menu in Common Events for cheats. 
+	
+#############################################Scripts###############################################
+Nergal Relationship Script has been changed to add two separate commands for the Test Map Stat Changes
+
