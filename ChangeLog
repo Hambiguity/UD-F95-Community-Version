@@ -1,4 +1,3 @@
-Edit this ;D
 ###########################Dialogue and Text Message Changes################################
 Text Message 15 needed a variable switch to activate correctly.
 Lots of Dialogues updated by KingsRaiden
@@ -31,6 +30,10 @@ Fixed mrs-j-hj scenes and added mrs-j-bj-lick-corrupt which is a copy of mrs-j-b
 022 Playground:
 	009,006|005:Kimberly
 		Added Extra Requirement to the Hide and Seek to prevent abandonment even when you are at max pure and max corrupt on the Pure Route.
+
+030 Tools Store:
+	010,006|004:EV004|Page 2 & 3 & 4
+		Fixed getting stuck behind the counter by adding a jump command at the end of the interactions.
 
 033 Miss Amos House:
 	013,017|004:Miss Amos Kit
