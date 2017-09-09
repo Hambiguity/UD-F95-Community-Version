@@ -2,6 +2,11 @@
 Text Message 15 needed a variable switch to activate correctly.
 Lots of Dialogues updated by KingsRaiden
 Fixed mrs-j-hj scenes and added mrs-j-bj-lick-corrupt which is a copy of mrs-j-bj-corrupt
+Updated Mrs-J-bj-home-purity.csv and Mrs-J-home-fuck-purity.csv to no longer refer to being in school
+Updated mrs-j-tf-home-purity.csv to refer to MC being in the home for dinner
+Fixed typos in: Mrs-J-bj-home-corrupt.csv, Mrs-J-home-fuck-corrupt.csv
+Redid mom-bj.csv and mom-tf.csv to have varying text for each level of corruption
+Created dialogue for mom-10.csv
 
 
 ####################################Event Changes###########################################
@@ -24,6 +29,9 @@ Fixed mrs-j-hj scenes and added mrs-j-bj-lick-corrupt which is a copy of mrs-j-b
 014 Home Floor 02:
 	016,015|SydneySleep and 011,009|Sydney
 		Fixed a bug with Sister rage scene by adding a 2 events that allow for the scene to occur at night
+015 Home Floor 03:
+	006,007|010:EV010 (Wake Up event)
+		After the first Morning HJ from Mom she'll now start next to the MC instead of having to sit through her walking up to you slowly.
 019 Park South:
 	007,010|011:Sarah|Page 2
 		Fixed dialogue for when sex level is above 8 and on pure path
@@ -44,8 +52,9 @@ Fixed mrs-j-hj scenes and added mrs-j-bj-lick-corrupt which is a copy of mrs-j-b
 		Fixed a lot of scenes and dialogue issues but I can't remember all of them.
 			I had to change mrs-j-bj-corrupt to mrs-j-bj-lick-corrupt because mrs-j-bj-lick-corrupt didn't exist before that. I copied the mrs-j-bj-corrupt into a separate file and renamed it to compensate for if there are any unknown scenes that use mrs-j-bj-lick-corrupt.
 				The point is it was a complicated issue but it's fixed and it works now.
-				If there are no scenes that use mrs-j-bj-corrupt in the future we can delete that file without repercussions
-
+				If there are no scenes that use mrs-j-bj-corrupt in the future we can delete that file without repercussions	
+	006,009|003:EV003|Page 5: (Morning Scenes)
+		Fixed 10 Heart scene playing every morning. Should now only play on mondays.
 047 Entrance:
 	010,007|007:EV007
 		Fixed bug where event occurred during the day when walking dizzy home
@@ -56,4 +65,7 @@ Common Event 053:
 	
 #############################################Scripts###############################################
 Nergal Relationship Script has been changed to add two separate commands for the Test Map Stat Changes
+Nergals Phone Menu Script:
+	Removed slow moving cursor. Use Left and Right keys to cycle through the different apps.
+	Pressing X will now return you to the main phone menu screen. If already on the screen you'll put the phone away (exit out).
 
