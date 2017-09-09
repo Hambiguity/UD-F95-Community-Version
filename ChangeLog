@@ -31,7 +31,7 @@ Created dialogue for mom-10.csv
 		Fixed a bug with Sister rage scene by adding a 2 events that allow for the scene to occur at night
 015 Home Floor 03:
 	006,007|010:EV010 (Wake Up event)
-		After the first Morning HJ from Mom she'll now start next to the MC instead of having to sit through her walking up to you slowly.
+		After the first Morning HJ from Mom she'll now start next to the MC instead of having to sit through her walking up to you slowly. Added Dialogue to event after sex scenes and updated so sprite appears as you wake up.
 019 Park South:
 	007,010|011:Sarah|Page 2
 		Fixed dialogue for when sex level is above 8 and on pure path
