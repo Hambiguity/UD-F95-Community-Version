@@ -69,4 +69,4 @@ Nergals Phone Menu Script:
 	Removed slow moving cursor. Use Left and Right keys to cycle through the different apps.
 	Pressing X will now return you to the main phone menu screen. If already on the screen you'll put the phone away (exit out).
 	
-PayMeOn should no longer crash when used. This was caused by the new phone code.
+PayMeOn should no longer crash when used. This crashing was being caused by the new phone code.
