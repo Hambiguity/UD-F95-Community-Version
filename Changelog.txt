@@ -1,1 +1,1 @@
-
+09/13/17 - NotThatICare: I realized that there were numerous scripts in the repository that were not authored by Nergal. Some scripts can have weird licensing so for this reason, and out of respect for the authors of the scripts, I have removed any .rb files that explicitly stated authorship from anyone other than Nergal.
