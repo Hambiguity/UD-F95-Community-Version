@@ -350,6 +350,7 @@ class Scene_Phone < Scene_Base
   def terminate  
     super
     SceneManager.snapshot_for_background
+    $iconspointer = nil
     dispose_graphics
   end
   
@@ -431,10 +432,14 @@ class Sprite_Pointer < Sprite
         y = $game_variables[@y_loc_var]
     end
     
-    #self.x = x
-    #self.y = y
-    self.x = $iconspointer[0].x + $iconspointer[0].bitmap.width/2
-    self.y = $iconspointer[0].y + $iconspointer[0].bitmap.height/2
+    if $iconspointer != nil 
+      self.x = $iconspointer[0].x + $iconspointer[0].bitmap.width/2
+      self.y = $iconspointer[0].y + $iconspointer[0].bitmap.height/2
+    else
+      self.x = x
+      self.y = y
+    end
+    
     self.z = 10
   end
 
@@ -446,50 +451,45 @@ class Sprite_Pointer < Sprite
   end
   
   def update_position
-  
-    #NTIC/
-    
-    #print $iconspointer.length
-    
-    if $iconspointer.length < 1
-      return
+    if $iconspointer != nil
+      if $iconspointer.length < 1
+        return
+      end
+      
+      if Input.repeat?(:RIGHT) && !Input.repeat?(:LEFT) && @icon_array_index <= ($iconspointer.length - 1)
+        if @icon_array_index == ($iconspointer.length - 1)
+          @icon_array_index = 0
+        else      
+          @icon_array_index = @icon_array_index + 1
+        end
+        xPosition = $iconspointer[@icon_array_index].x + $iconspointer[@icon_array_index].bitmap.width/2
+        yPosition = $iconspointer[@icon_array_index].y + $iconspointer[@icon_array_index].bitmap.height/2
+        self.x = xPosition 
+        self.y = yPosition       
+      elsif Input.repeat?(:LEFT) && !Input.repeat?(:RIGHT) && @icon_array_index >= 0 #NotThatICare
+        if @icon_array_index == 0
+          @icon_array_index = $iconspointer.length - 1
+        else
+          @icon_array_index = @icon_array_index - 1
+        end
+        xPosition = $iconspointer[@icon_array_index].x + $iconspointer[@icon_array_index].bitmap.width/2
+        yPosition = $iconspointer[@icon_array_index].y + $iconspointer[@icon_array_index].bitmap.height/2
+        self.x = xPosition 
+        self.y = yPosition 
+      end
+    else
+      
+      if Input.press?(:LEFT) && !Input.press?(:RIGHT)
+        self.x -= @speed if self.x > @lowx 
+      elsif Input.press?(:RIGHT) && !Input.press?(:LEFT)
+        self.x += @speed if self.x < @highx  - width
+      elsif Input.press?(:UP) && !Input.press?(:DOWN)
+        self.y -= @speed if self.y > @lowx 
+      elsif Input.press?(:DOWN) && !Input.press?(:UP)
+        self.y += @speed if self.y < @highy - height
+      end
     end
     
-    
-    if Input.repeat?(:RIGHT) && !Input.repeat?(:LEFT) && @icon_array_index <= ($iconspointer.length - 1)
-      if @icon_array_index == ($iconspointer.length - 1)
-        @icon_array_index = 0
-      else      
-        @icon_array_index = @icon_array_index + 1
-      end
-      xPosition = $iconspointer[@icon_array_index].x + $iconspointer[@icon_array_index].bitmap.width/2
-      yPosition = $iconspointer[@icon_array_index].y + $iconspointer[@icon_array_index].bitmap.height/2
-      self.x = xPosition 
-      self.y = yPosition       
-    elsif Input.repeat?(:LEFT) && !Input.repeat?(:RIGHT) && @icon_array_index >= 0 #NotThatICare
-      if @icon_array_index == 0
-        @icon_array_index = $iconspointer.length - 1
-      else
-        @icon_array_index = @icon_array_index - 1
-      end
-      xPosition = $iconspointer[@icon_array_index].x + $iconspointer[@icon_array_index].bitmap.width/2
-      yPosition = $iconspointer[@icon_array_index].y + $iconspointer[@icon_array_index].bitmap.height/2
-      self.x = xPosition 
-      self.y = yPosition 
-    end 
-    #/NTIC
-    
-    #NTIC/
-    #if Input.press?(:LEFT) && !Input.press?(:RIGHT)
-     # self.x -= @speed if self.x > @lowx 
-    #elsif Input.press?(:RIGHT) && !Input.press?(:LEFT)
-     # self.x += @speed if self.x < @highx  - width
-    #elsif Input.press?(:UP) && !Input.press?(:DOWN)
-     # self.y -= @speed if self.y > @lowx 
-    #elsif Input.press?(:DOWN) && !Input.press?(:UP)
-     # self.y += @speed if self.y < @highy - height
-    #end
-    #/NTIC
   end
 end # Sprite_Pointer < Sprite
 
