@@ -84,3 +84,8 @@ Nergals Phone Menu Script:
 	Removed slow moving cursor. Use Left and Right keys to cycle through the different apps.
 	Pressing X will now return you to the main phone menu screen. If already on the screen you'll put the phone away (exit out).
 
+#############################################Map Updates###############################################
+
+Updated Map 099 (Found under "North District Container -> Residential Area Container -> Street) for better FPS. This involved making a parallax of the
+original map and then removing all unnecessary tiles.
+
