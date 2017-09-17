@@ -7,7 +7,17 @@ Updated mrs-j-tf-home-purity.csv to refer to MC being in the home for dinner
 Fixed typos in: Mrs-J-bj-home-corrupt.csv, Mrs-J-home-fuck-corrupt.csv
 Redid mom-bj.csv and mom-tf.csv to have varying text for each level of corruption
 Created dialogue for mom-10.csv
-
+Post Sept 11, 2017
+Updating Sydney Anal dialogues purity and corrupt
+Updating Sarah dialogues, purity and corrupt, for variety
+Fae Queen level 2 update
+Updating Lisa Babysitting and Fuck dialogues corrupt and purity, for variety
+Updating Mrs Amos masturbating scene, home fuck/store grope/home grope/store bj corrupt and purity
+Nurse Donna titfuck corrupt and purity dialogue updates, as well as hj edits
+Kaylee fuck and toilet fuck dialogues, purity and corrupt, for variety
+Dizzy bed, hj, and outside fuck dialogues for variety
+Kimberly bj, bs, and store dialogues, purity and corrupt, for variety
+Created mrs-j-10-fuck-home.csv for version of the 10 Heart Mrs J scene in her house
 
 ####################################Event Changes###########################################
 
@@ -29,6 +39,8 @@ Created dialogue for mom-10.csv
 014 Home Floor 02:
 	016,015|SydneySleep and 011,009|Sydney
 		Fixed a bug with Sister rage scene by adding a 2 events that allow for the scene to occur at night
+	003,013|009:EV009
+		Peter now has an avatar for his dialogue during the shower photo scene
 015 Home Floor 03:
 	006,007|010:EV010 (Wake Up event)
 		After the first Morning HJ from Mom she'll now start next to the MC instead of having to sit through her walking up to you slowly. Added Dialogue to event after sex scenes and updated so sprite appears as you wake up.
@@ -59,6 +71,12 @@ Created dialogue for mom-10.csv
 	010,007|007:EV007
 		Fixed bug where event occurred during the day when walking dizzy home
 		
+Haven't actually uploaded this yet, got a little overzealous, sorry -NotThatICare
+/				      
+103 Mrs Jennings House:
+	023,007|018:Mrs J
+		Added a clothed and in her home version of the Mrs J 10 Heart event
+/		
 #########################################Common Events#############################################
 Common Event 053:
 	Added Teleport, Return to Position, and Change time to Q hotkey menu in Common Events for cheats. 
@@ -68,5 +86,13 @@ Nergal Relationship Script has been changed to add two separate commands for the
 Nergals Phone Menu Script:
 	Removed slow moving cursor. Use Left and Right keys to cycle through the different apps.
 	Pressing X will now return you to the main phone menu screen. If already on the screen you'll put the phone away (exit out).
-	
+
 PayMeOn should no longer crash when used. This crashing was being caused by the new phone code.
+
+#############################################Map Updates###############################################
+
+Updated Map 099 (Found under "North District Container -> Residential Area Container -> Street) for better FPS. This involved making a parallax of the
+original map and then removing all unnecessary tiles.
+
+Updated Map 054:Store - The collision for all the walls was missing for some reason.
+
