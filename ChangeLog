@@ -92,3 +92,5 @@ Nergals Phone Menu Script:
 Updated Map 099 (Found under "North District Container -> Residential Area Container -> Street) for better FPS. This involved making a parallax of the
 original map and then removing all unnecessary tiles.
 
+Updated Map 054:Store - The collision for all the walls was missing for some reason.
+
