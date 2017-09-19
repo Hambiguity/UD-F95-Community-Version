@@ -132,6 +132,8 @@ Common Event 033:
 	Added Staff Meeting Switches so they turn off at the end of the day.
 Common Event 053:
 	Added Teleport, Return to Position, and Change time to Q hotkey menu in Common Events for cheats. 
+Common Event 063:
+	New Event: handles the Save/Load functionality on the phone
 Common Event 139:
 	Added Multiple changes to for New Mrs Jennings Accommodations
 	
@@ -142,6 +144,8 @@ Nergals Phone Menu Script:
 	Pressing X will now return you to the main phone menu screen. If already on the screen you'll put the phone away (exit out).
 
 PayMeOn should no longer crash when used. This crashing was being caused by the new phone code.
+
+Added Phone Save/Load functionality
 
 #############################################Map Updates###############################################
 
