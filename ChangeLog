@@ -17,7 +17,9 @@ Nurse Donna titfuck corrupt and purity dialogue updates, as well as hj edits
 Kaylee fuck and toilet fuck dialogues, purity and corrupt, for variety
 Dizzy bed, hj, and outside fuck dialogues for variety
 Kimberly bj, bs, and store dialogues, purity and corrupt, for variety
+======
 Updated Mrs J 10 Heart Fuck at School
+Created mrs-j-10-fuck-home.csv for version of the 10 Heart Mrs J scene in her house
 
 ####################################Event Changes###########################################
 
@@ -71,10 +73,12 @@ Updated Mrs J 10 Heart Fuck at School
 	010,007|007:EV007
 		Fixed bug where event occurred during the day when walking dizzy home
 		
+Haven't actually uploaded this yet, got a little overzealous, sorry -NotThatICare
+/				      
 103 Mrs Jennings House:
 	023,007|018:Mrs J
 		Added a clothed and in her home version of the Mrs J 10 Heart event
-		
+/		
 #########################################Common Events#############################################
 Common Event 053:
 	Added Teleport, Return to Position, and Change time to Q hotkey menu in Common Events for cheats. 
@@ -84,4 +88,13 @@ Nergal Relationship Script has been changed to add two separate commands for the
 Nergals Phone Menu Script:
 	Removed slow moving cursor. Use Left and Right keys to cycle through the different apps.
 	Pressing X will now return you to the main phone menu screen. If already on the screen you'll put the phone away (exit out).
+
+PayMeOn should no longer crash when used. This crashing was being caused by the new phone code.
+
+#############################################Map Updates###############################################
+
+Updated Map 099 (Found under "North District Container -> Residential Area Container -> Street) for better FPS. This involved making a parallax of the
+original map and then removing all unnecessary tiles.
+
+Updated Map 054:Store - The collision for all the walls was missing for some reason.
 
