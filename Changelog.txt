@@ -1,1 +1,3 @@
 09/13/17 - NotThatICare: I realized that there were numerous scripts in the repository that were not authored by Nergal. Some scripts can have weird licensing so for this reason, and out of respect for the authors of the scripts, I have removed any .rb files that explicitly stated authorship from anyone other than Nergal.
+
+09/21/17 - NotThatICare: Added a new command for the .csv files called "<command:change_view_fade >" works almost exactly like the normal "<command:change_view>" but fades out from the previous scene and fades into the new one in order to give less awkward flow during certain scenes ( Mrs J x Mom threesome for example).
