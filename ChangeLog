@@ -147,10 +147,3 @@ PayMeOn should no longer crash when used. This crashing was being caused by the 
 
 Added Phone Save/Load functionality
 
-#############################################Map Updates###############################################
-
-Updated Map 099 (Found under "North District Container -> Residential Area Container -> Street) for better FPS. This involved making a parallax of the
-original map and then removing all unnecessary tiles.
-
-Updated Map 054:Store - The collision for all the walls was missing for some reason.
-
