@@ -154,3 +154,8 @@ PayMeOn should no longer crash when used. This crashing was being caused by the 
 
 Added Phone Save/Load functionality
 
+#############################################Map Changes###############################################
+
+054:Store: Added collision onto map 
+
+
