@@ -23,6 +23,8 @@ Created mrs-j-10-fuck-home.csv for version of the 10 Heart Mrs J scene in her ho
 Updated dialogue for mrs-j-10-fuck-home.csv
 ======
 Added dialog with Mr J at home
+=======
+Created mrs-j-10-fuck-home.csv for version of the 10 Heart Mrs J scene in her house
 
 ####################################Event Changes###########################################
 
@@ -94,10 +96,5 @@ Nergals Phone Menu Script:
 
 PayMeOn should no longer crash when used. This crashing was being caused by the new phone code.
 
-#############################################Map Updates###############################################
-
-Updated Map 099 (Found under "North District Container -> Residential Area Container -> Street) for better FPS. This involved making a parallax of the
-original map and then removing all unnecessary tiles.
-
-Updated Map 054:Store - The collision for all the walls was missing for some reason.
-
+=======
+Added Phone Save/Load functionality
