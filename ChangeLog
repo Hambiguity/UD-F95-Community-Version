@@ -39,10 +39,8 @@ Created mrs-j-10-fuck-home.csv for version of the 10 Heart Mrs J scene in her ho
 		Made it so she disappears during the Supermarket scene.
 	006,014|30:Babysitter|Event Page 2 & 5 & 6
 		Added a else clause to add a variety of dialogue if the sex level is under level 8
-016: School Outside:
-	009,005|046:EV046
-		Added a invisible event next to Recess Mrs J in order to equate the values of the old variables to the new ones to ensure all scenes are possible for the Mrs J's Recess sex so it works with the rewrite.
-			This will not activate unless you have the old variables above zero (which is impossible at the moment for anyone whose not cheating.) So this only works for old saves right now but in the future it will work with the new jennings quest.
+	009,011|001 Kitchen Lounge Door|Event Page 2
+		Significantly changed event for Mrs Jenning quest. In particular the Mrs Jennings tutor part of the quest014 Home Floor 02:
 014 Home Floor 02:
 	016,015|SydneySleep and 011,009|Sydney
 		Fixed a bug with Sister rage scene by adding a 2 events that allow for the scene to occur at night
@@ -51,9 +49,25 @@ Created mrs-j-10-fuck-home.csv for version of the 10 Heart Mrs J scene in her ho
 015 Home Floor 03:
 	006,007|010:EV010 (Wake Up event)
 		After the first Morning HJ from Mom she'll now start next to the MC instead of having to sit through her walking up to you slowly. Added Dialogue to event after sex scenes and updated so sprite appears as you wake up.
+	015,010|026:MrsJTutor|Page 1 & 2
+		Made tutoring scene more coherent and made accommodations for new Mrs Jennings quest.
+016: School Outside:
+	009,005|046:EV046
+		Added invisible Event for Staff meetings
+	011,007|009:Mrs Jennings - Afternoon (kiss)|Page 4
+		Added page to make her invisible during staff Meetings
+	013,010|045:Mrs Jennings - Afternoon (no kiss)|Page 2
+		Added page to make her invisible during staff Meetings
+	011,004|015:EV015:
+		Door unlocks during staff meeting days
+	012,004|004:EV004:
+		Door unlocks during staff meeting days
 019 Park South:
 	007,010|011:Sarah|Page 2
 		Fixed dialogue for when sex level is above 8 and on pure path
+021 Park West:
+	004,008|020:EV020|Page 2:
+		Changed Code to reflect Pure and corrupt paths rather than determining by Pure and Corruption Points
 022 Playground:
 	009,006|005:Kimberly
 		Added Extra Requirement to the Hide and Seek to prevent abandonment even when you are at max pure and max corrupt on the Pure Route.
@@ -72,11 +86,53 @@ Created mrs-j-10-fuck-home.csv for version of the 10 Heart Mrs J scene in her ho
 			I had to change mrs-j-bj-corrupt to mrs-j-bj-lick-corrupt because mrs-j-bj-lick-corrupt didn't exist before that. I copied the mrs-j-bj-corrupt into a separate file and renamed it to compensate for if there are any unknown scenes that use mrs-j-bj-lick-corrupt.
 				The point is it was a complicated issue but it's fixed and it works now.
 				If there are no scenes that use mrs-j-bj-corrupt in the future we can delete that file without repercussions	
+		As of 9/10/2017 I have changed the Jennings events to accommodate the new Jennings quest line.
 	006,009|003:EV003|Page 5: (Morning Scenes)
 		Fixed 10 Heart scene playing every morning. Should now only play on mondays.
+	009,009|004:EV004:
+		This particular event is made to run during Quest Point 15 in order to decide which route the player is going to proceed with.
+
 047 Entrance:
 	010,007|007:EV007
 		Fixed bug where event occurred during the day when walking dizzy home
+066 School Inside - West
+	009,020|018:Pito|Page 2
+		Changed conditionals in branch for New Jennings quest
+	021,022|021:EVO21
+		Made event for alerting the game that a staff meeting is taking place
+		
+067 Bar:
+	008,007|005:EV005|Page 2:
+		Changed script to accommodate new Jennings quest.
+		
+069 Grocery Store:
+	18,008|015:MrsJ:
+		Made it so MrsJ Faces you when she notices you in event
+		
+074: Toilet Scene - Mrs J
+	007,006|001:EV001:
+		Added Sex Level Dialogue variation and modified it for future Jennings Quest accommodations.
+
+093: School Inside - East:
+	003,021|024:EV024:
+		Made event for alerting the game that a staff meeting is taking place
+			Staff Meetings take place every Wednesday and give the player a chance to fuck Mrs Jennings in the afternoon once per day.
+
+099: Street:
+	013,012|008:EV008:
+		Changed code for door so that every Wednesdayday during staff meetings, Mr. Jennings will answer the door instead of Mrs Jennings.
+
+103:Mrs Jennings House:
+	023,007|018:Mrs J|Page 1 & 2 & 3 & 4 & 5
+/###############
+Haven't actually uploaded this yet, got a little overzealous, sorry -NotThatICare		
+		Added a clothed and in her home version of the Mrs J 10 Heart event
+/##############		
+		Added Dialogue variety
+		Added TF
+		Added Repeatable scenes where you can choose what you want.
+		Changed so Mrs Jennings won't be there during school staff Meetings
+		
 		
 Haven't actually uploaded this yet, got a little overzealous, sorry -NotThatICare
 /				      
@@ -85,8 +141,14 @@ Haven't actually uploaded this yet, got a little overzealous, sorry -NotThatICar
 		Added a clothed and in her home version of the Mrs J 10 Heart event
 /		
 #########################################Common Events#############################################
+Common Event 033:
+	Added Staff Meeting Switches so they turn off at the end of the day.
 Common Event 053:
 	Added Teleport, Return to Position, and Change time to Q hotkey menu in Common Events for cheats. 
+Common Event 063:
+	New Event: handles the Save/Load functionality on the phone
+Common Event 139:
+	Added Multiple changes to for New Mrs Jennings Accommodations
 	
 #############################################Scripts###############################################
 Nergal Relationship Script has been changed to add two separate commands for the Test Map Stat Changes
@@ -97,3 +159,4 @@ Nergals Phone Menu Script:
 PayMeOn should no longer crash when used. This crashing was being caused by the new phone code.
 
 Added Phone Save/Load functionality
+
