@@ -12,10 +12,7 @@ module ImagePlayer_Config
   DIALOGUE_ROMANCE_LEVEL_VAR = 103
   SCENE_NAME_VAR = 102
   SCENE_OVERLAY_SWITCH = 106
-  $fade_in_progress = false    #NTIC
-  $fade_out_finished = false   #NTIC
   
-   
   RND_SEX_SOUND = [ 
         ["Sex - Wet 3 (2)",80,100], 
         ["Sex - Wet 3 (3)",80,100], 
@@ -53,12 +50,12 @@ end
 module Cache
   def self.scene(scene, filename)
       load_bitmap("Graphics/Scenes/" + scene + "/", filename)
-  end
-  
-  def self.fade
+    end
+    
+  #NTIC
+  def self.load_fade
     load_bitmap("Graphics/Pictures/", "FadeOut.jpg")
   end
-    
 end 
 
 include ImagePlayer_Config
@@ -78,7 +75,9 @@ class ImagePlayer < Scene_Base
     @current_wait = MIN_FRAMES_SEC #Current frame tick 
     
     @new_scene = ""
-    
+    @new_scene_temp = ""  #NTIC
+    @new_text_temp = ""  #NTIC
+     
     @image_id = 1 #Current Image to load
     @scene = $game_variables[SCENE_NAME_VAR] #Scene name
     @max_images = get_file_count #umber of images in scene group
@@ -130,6 +129,7 @@ class ImagePlayer < Scene_Base
     end
       
     @winhelpoverlay = SceneKeysHelp_Window.new
+    @windialogue = nil   #NTIC
     
     show_dialogue
     
@@ -144,6 +144,7 @@ class ImagePlayer < Scene_Base
   end
   
   def update
+
     update_sceneplayer
     
     if @max_images == nil then
@@ -176,13 +177,43 @@ class ImagePlayer < Scene_Base
       #Reduce delay until netx frame is played
       @current_wait = @current_wait - 1
     end
-       
     
-
+    if @aFade != nil   #NTIC
+      if @windialogue != nil
+        @new_text_temp = @windialogue.get_text
+        @windialogue.dispose_name_window
+        @windialogue.dispose
+        @winhelpoverlay.dispose
+        @windialogue = nil
+      end  
+      
+      if @current_wait == 0
+        if @aFade.get_fade_out_finished == false
+          @aFade.fade_update
+          if @aFade.get_fade_out_finished == true
+            @new_scene = @new_scene_temp
+            @image_id = @max_images + 1
+          end
+         else
+          if @aFade.fade_update == true
+            @aFade.dispose
+            @aFade = nil
+            
+            @windialogue = SceneDialogue_Window.new(@new_text_temp)  
+            @winhelpoverlay = SceneKeysHelp_Window.new
+          end
+        end
+        @current_wait = @max_speed
+        update_image
+      end 
+      return
+   end 
+   
     if @current_wait == 0 then     
       @current_wait = @max_speed #Need something like "current max wait"
       update_image
     end
+    
     
     #If we have completed the scene, hang here until the return key has been pressed
     if @scenend == true then
@@ -194,42 +225,35 @@ class ImagePlayer < Scene_Base
       return
     end
     
-     if Input.repeat?(:RIGHT)
-       #If we are at the max number of frames needed then return
-        if @current_progress == @max_progress then
-         return
-       end
-      
-       @current_progress = @current_progress + 1
-       show_dialogue
-     #Enter key
-     elsif Input.repeat?(:UP)
-       #If we are on fastest speed - allow cum
-       if @current_progress == @max_progress && $game_switches[DIALOGUE_LOCK_SWICTH] == false then
-         show_dialogue
-     end
+    if Input.repeat?(:RIGHT)
+      #If we are at the max number of frames needed then return
+      if @current_progress == @max_progress then
+        return
+      end
+       
+      @current_progress = @current_progress + 1
+      show_dialogue
+    
+    #Enter key
+    elsif Input.repeat?(:UP)
+      #If we are on fastest speed - allow cum
+      if @current_progress == @max_progress && $game_switches[DIALOGUE_LOCK_SWICTH] == false then
+        show_dialogue
+      end
     end
-     
+    
   end
   
   def update_image  
     
     if @image_id >= @max_images then
       @image_id = 1
-      #If we have flagged to change the scene, change it at the end of the current one 
-      if @new_scene != nil && @new_scene != "" then 
-        if $fade_in_progress == false             #NTIC
-          @scene = @new_scene
-          @max_images = get_file_count
-          @new_scene = ""
-          Cache.clear
-        elsif $fade_in_progress == true && $fade_out_finished == true
-          @scene = @new_scene
-          @max_images = get_file_count
-          @new_scene = ""
-          Cache.clear
-        end
-        
+      #If we have flagged to change the scene, change it at the end of the current one
+      if @new_scene != nil && @new_scene != "" then
+        @scene = @new_scene
+        @max_images = get_file_count
+        @new_scene = ""
+        Cache.clear
       end
       
       if @new_speed > 0 then
@@ -261,21 +285,11 @@ class ImagePlayer < Scene_Base
       $game_message.add("ERROR LOADING: " + @scene + " (" + @image_id.to_s + ")    IMAGE FILE")
       return
     end
-    
-   
-    if $fade_in_progress == true  #NTIC
-      @fade.update
-      if $fade_out_finished == true 
-        if @new_scene != "" && @new_scene != nil
-          @image_id = @max_images + 1
-        end
-      end
-    end
-    
-    
+
     if @no_sound == false then
         check_sound_play
-    end    
+    end 
+      
   end
   
   def get_background_name
@@ -337,9 +351,10 @@ class ImagePlayer < Scene_Base
   end
     
   def show_dialogue 
+   
     #Get the current dialogue line from the current dialogue level
     text = @dialogue_script[@dialogue_script_level]
-    
+      
     #If it's blank for whatever reason, just return don't display window
     if text == nil || text == "" then
       return
@@ -347,18 +362,17 @@ class ImagePlayer < Scene_Base
     
     new_text = get_dialogue_commands(text)
     
-    #Lock input due to dialogue display
     $game_switches[DIALOGUE_LOCK_SWICTH] = true
     
     #Show dialogue window
-    @windialogue = SceneDialogue_Window.new(new_text)  
-
+    @windialogue = SceneDialogue_Window.new(new_text) 
+    
     #Increase the dialogue level
     @dialogue_script_level += 1
+  
   end
   
   def get_dialogue_commands(text)
-    
     if text.match(/<command:.+>/) then      
       #change view command
       if text.match(/<command:change_view:(\w+-*)+>/) then
@@ -379,22 +393,13 @@ class ImagePlayer < Scene_Base
         new_val = val.gsub(/<command:change_view_fade:/, '')
         new_val = new_val.gsub(/>/,'') #Gets the scene to change to
         
-        @fade = Fade.new
-        @fade.init
-        $fade_in_progress = true
+        @aFade = Fade.new   
         
-        @new_scene = new_val
+        @new_scene_temp = new_val
         text = text.gsub(/<command:change_view_fade:(\w+-*)+>/, '')
       end
-
-      if match = text.match(/<command:scene_override:(\d+)>/) then 
-        new_max_image = match.captures[0]
-        @maximages = new_max_image.to_i
-        text = text.gsub(/<command:scene_override:(\d+)>/, '')
-      end  
       #/NTIC
-
-
+      
       #play sound command (Name|Vol|Pitch|Frame)
       if match = text.match(/<command:play_sound:(.+)\|(\d+)\|(\d+)>/) then               
         RPG::SE.new(match.captures[0],match.captures[1].to_i,match.captures[2].to_i).play
@@ -457,8 +462,6 @@ class ImagePlayer < Scene_Base
         @videorecord.z = 1000
         text = text.gsub(/<command:videorecord>/, '')
       end
-      
-      
       
     end
     
@@ -586,6 +589,7 @@ class SceneDialogue_Window < Window_Base
     self.opacity = 255
     self.z = 1000
     
+    @text = text   #NTIC
     @text_lines = text.split("|")
     @line_count = @text_lines.count
     @current_line = 0
@@ -600,23 +604,20 @@ class SceneDialogue_Window < Window_Base
     draw_dialogue
   end
   
-  def update
-          
+  def update   
     if Input.repeat?(:DOWN)
-      if $fade_in_progress == false           #NTIC
-        @line_count = @line_count - 1
+      @line_count = @line_count - 1
       
-          if @line_count < 1 then
-            #Unlock speed input and dispose of this text window
-            $game_switches[DIALOGUE_LOCK_SWICTH] = false
-            @name_window.dispose
-            dispose
-          else
-            #Prepare the next time of text
-            @current_line += 1       
-            refresh
-          end
-       end
+      if @line_count < 1 then
+          #Unlock speed input and dispose of this text window
+          $game_switches[DIALOGUE_LOCK_SWICTH] = false
+          @name_window.dispose
+          dispose
+        else
+          #Prepare the next time of text
+          @current_line += 1       
+          refresh
+      end
     end
   end
  
@@ -679,6 +680,13 @@ class SceneDialogue_Window < Window_Base
     draw_text(0,0,Graphics.width, Graphics.height/5, line)
   end
   
+  def get_text   #NTIC
+    return @text
+  end
+  
+  def dispose_name_window #NTIC
+    @name_window.dispose
+  end 
 end
 
 class SceneKeysHelp_Window < Window_Base
@@ -789,28 +797,41 @@ end
 
 #NTIC/
 class Fade < Sprite
-  def init
-    #@finishedFadeIn = false
-    self.bitmap = Cache.fade
+  
+  def initialize
+    super
+    self.bitmap = Cache.load_fade
     self.x = 0
     self.y = 0
     self.z = 1000
     self.opacity = 0
+    @fade_rate = 7
+    @fade_out_finished = false
   end
   
-  def update
-    if self.opacity < 255  && $fade_out_finished == false
-        self.opacity = self.opacity + 5
-        if self.opacity >= 255
-          $fade_out_finished = true
-        end
-    elsif $fade_out_finished = true
-      self.opacity = self.opacity - 5
-      if self.opacity <= 0
-        $fade_in_progress = false
-        $fade_out_finished = false
+  def fade_update
+    if @fade_out_finished == false
+      self.opacity += @fade_rate
+      if self.opacity >= 255
+        @fade_out_finished = true
       end
+      return false
+    else
+      self.opacity -= @fade_rate
+      if self.opacity <= 0
+        return true
+      end
+      return false
     end
   end
+  
+  def get_fade_out_finished
+    return @fade_out_finished
+  end
+  
+  def set_fade_rate(new_rate)
+    @fade_rate = new_rate
+  end
+
 end
 #/NTIC
